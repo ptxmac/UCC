@@ -25,7 +25,7 @@ https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md
 ## Tools
 
 - https://github.com/christabor/flask_jsondash
-  Flash dashboard
+  Flask dashboard
 
 
 ## Projects and ideas
