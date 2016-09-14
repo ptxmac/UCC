@@ -7,25 +7,16 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-
 import spray.json._
-
 import ch.megard.akka.http.cors.CorsDirectives._
+import ucc.shared.API.DatasetsReply
 
 /**
   * Created by ptx on 9/11/16.
   */
 
-// TODO: use a better JSON library
 
-case class HelloReply(str: String)
-
-trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
-  implicit val helloReplyFormat = jsonFormat1(HelloReply)
-}
-
-
-object Backend extends JsonSupport {
+object Backend {
 
 
   def main(args: Array[String]): Unit = {
@@ -35,10 +26,12 @@ object Backend extends JsonSupport {
     implicit val materializer = ActorMaterializer()
 
     val route: Route = cors() {
-      path("hello") {
+      path("datasets") {
         get {
-          println("Got request!")
-          complete(HelloReply("Hello world"))
+          complete {
+            val reply = DatasetsReply(Seq("Test", "Hest"))
+            upickle.default.write(reply)
+          }
         }
       }
     }
