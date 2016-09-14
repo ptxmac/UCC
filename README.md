@@ -1,43 +1,22 @@
-# Uber coding challenge:
+# UCC
 
-https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md
+## Borrowed components
 
-## Track
+The google maps API wrapper from <https://github.com/coreyauger/scalajs-google-maps> is copied 
 
-- backend!
-- with minimal frontend
+## Structure
 
-## Stack
+The project is split into frontend and backend. 
 
-### Python
+### Backend
 
-- Flask
-- hug (http://hug.rest/)
-
-### Scala
-
-- Akka HTTP ?
-
-### Erlang
-
-- Because, why not?
-
-## Tools
-
-- https://github.com/christabor/flask_jsondash
-  Flask dashboard
+### Frontend
 
 
-## Projects and ideas
+## Development
 
-Some notes about what I could do
+To descrease turn-around-time this project uses a fix of workbench (link here) and sbt-resolver (another link here) to enable auto-reloading of both frontend and backend code.
 
-### Departure Times
-### SF Movies
+Start the project using `sbr "~; frontend/fastOptJS; backend/re-start`
 
-### Email service
-
-- use a queue (cellery?) to send mails _at some time_
-
-### Food trucks
-
+Then go to: http://localhost:12345/frontend/target/scala-2.11/index-dev.html
