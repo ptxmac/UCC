@@ -49,7 +49,12 @@ object Backend {
 
         upickle.default.write(reply)
       }
+    } ~ path(PathEnd) {
+      getFromResource("index-prod.html")
+    } ~ path(Segment) { name =>
+      getFromResource(name)
     }
+
   }
 
 
@@ -61,6 +66,7 @@ object Backend {
 
     val port = sys.env.getOrElse("PORT", "8085").toInt
     // Start server
+    println(s"Start on $port")
     Http().bindAndHandle(route, "0.0.0.0", port)
 
   }

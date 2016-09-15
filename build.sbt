@@ -4,7 +4,11 @@ version in ThisBuild := "0.0.1-SNAPSHOT" // TODO get from git
 organization in ThisBuild := "dk.ptx"
 
 
-lazy val root = (project in file(".")).aggregate(frontend, backend)
+lazy val root = (project in file(".")).settings(
+
+)
+  .aggregate(frontend, backend)
+
 
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
   libraryDependencies += "com.lihaoyi" %%% "upickle" % "0.4.2"
@@ -33,13 +37,21 @@ lazy val backend = (project in file("backend")).
 
       )
     }
-  ).dependsOn(sharedJVM).
-  enablePlugins(JavaAppPackaging)
+    ,
+    (resourceGenerators in Compile) <+=
+      (fastOptJS in Compile in frontend, packageScalaJSLauncher in Compile in frontend)
+        .map((f1, f2) => Seq(f1.data, f2.data)),
+    (resources in Compile) ++= (resources in(frontend, Compile)).value
+    //    watchSources <++= (watchSources in frontend)
+
+
+  ).dependsOn(sharedJVM)
+  .enablePlugins(JavaAppPackaging)
 
 lazy val frontend = (project in file("frontend")).
   settings(workbenchSettings: _*). // Add workbench to frontend for development
   settings(
-  persistLauncher in Compile := true,
+  //persistLauncher in Compile := true,
   libraryDependencies ++= Seq(
     // Scala.js Dom
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",

@@ -50,9 +50,9 @@ object Style extends StyleSheet.Inline {
 
 import scalatags.JsDom.all._
 
-object BackendAPI {
+class BackendAPI(base: String) {
   def callAPI(method: String): Future[String] = {
-    Ajax.get("http://localhost:8085/" + method).map(_.responseText)
+    Ajax.get(base + method).map(_.responseText)
   }
 
   def listDatasets: Future[DatasetListReply] = callAPI("datasets").map(upickle.default.read[DatasetListReply])
@@ -61,12 +61,15 @@ object BackendAPI {
 
 }
 
-object Frontend extends JSApp {
+@JSExport
+class Frontend(base: String) {
+
+  val api = new BackendAPI(base)
 
   var gmap: google.maps.Map = null // TODO option instead
 
   def fetchDatasets(): Unit = {
-    for (reply <- BackendAPI.listDatasets) {
+    for (reply <- api.listDatasets) {
 
       layerList.innerHTML = ""
       val elm = div(
@@ -97,7 +100,7 @@ object Frontend extends JSApp {
 
         if (enabled) {
           // Get set
-          for (reply <- BackendAPI.getDataset(id)) {
+          for (reply <- api.getDataset(id)) {
             for (elm <- reply.elements) {
 
               val content = div(elm.name).toString()
@@ -151,8 +154,8 @@ object Frontend extends JSApp {
     layer.render
   }
 
-
-  override def main(): Unit = {
+  @JSExport
+  def main(): Unit = {
     println("Hello world!!")
 
     // Add styles
