@@ -4,9 +4,10 @@ version in ThisBuild := "0.0.1-SNAPSHOT" // TODO get from git
 organization in ThisBuild := "dk.ptx"
 
 
+lazy val root = (project in file(".")).aggregate(frontend, backend)
+
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
   libraryDependencies += "com.lihaoyi" %%% "upickle" % "0.4.2"
-
 
 )
 

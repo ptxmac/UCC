@@ -5,6 +5,14 @@ package ucc.shared
   */
 object API {
 
-  case class DatasetsReply(sets: Seq[String])
+  case class DatasetInfo(name: String, id: String)
+
+  case class DatasetListReply(sets: Seq[DatasetInfo])
+
+  case class Location(lat: Double, lon: Double)
+
+  case class Element(name: String, location: Location)
+
+  case class DatasetReply(elements: Seq[Element])
 
 }

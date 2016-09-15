@@ -9,14 +9,56 @@ import akka.stream.ActorMaterializer
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json._
 import ch.megard.akka.http.cors.CorsDirectives._
-import ucc.shared.API.DatasetsReply
+import ucc.shared.API._
 
 /**
   * Created by ptx on 9/11/16.
   */
 
 
+trait DataSource {
+  val name: String
+
+  def elements: Seq[Element]
+}
+
+
+class TestDataSource extends DataSource {
+  override val name: String = "Test source"
+
+  override def elements: Seq[Element] = Seq(
+    Element("Uber", Location(56.156373, 10.207897))
+  )
+}
+
 object Backend {
+
+  val sources: Map[String, DataSource] = Map(
+    "test" -> new TestDataSource
+  )
+
+  def route: Route = cors() {
+    path("datasets") {
+      get {
+        complete {
+
+          val reply = DatasetListReply(
+            sources.map { case (key, source) => DatasetInfo(source.name, key) }.toSeq
+          )
+          upickle.default.write(reply)
+        }
+      }
+    } ~ path("datasets" / Segment) { name =>
+      // Get dataset
+      complete {
+        // new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
+        val source = sources(name)
+        val reply = DatasetReply(source.elements)
+
+        upickle.default.write(reply)
+      }
+    }
+  }
 
 
   def main(args: Array[String]): Unit = {
@@ -25,18 +67,8 @@ object Backend {
     implicit val system = ActorSystem("ucc-backend")
     implicit val materializer = ActorMaterializer()
 
-    val route: Route = cors() {
-      path("datasets") {
-        get {
-          complete {
-            val reply = DatasetsReply(Seq("Test", "Hest"))
-            upickle.default.write(reply)
-          }
-        }
-      }
-    }
 
-
+    // Start server
     Http().bindAndHandle(route, "localhost", 8085)
 
   }

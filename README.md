@@ -4,14 +4,18 @@
 
 The google maps API wrapper from <https://github.com/coreyauger/scalajs-google-maps> is copied 
 
+
+
+
 ## Structure
 
-The project is split into frontend and backend. 
+The project is split into frontend and backend.
 
 ### Backend
 
 ### Frontend
 
+### Shared
 
 ## Development
 
