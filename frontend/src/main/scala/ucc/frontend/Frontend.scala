@@ -117,9 +117,17 @@ class Frontend(base: String) {
 
               println(s"pos: $pos")
 
+              val icon = MarkerImage(
+                scaledSize = new Size(32, 32),
+                size = new Size(64, 64),
+                anchor = new Point(16, 16),
+                url = "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.6/assets/png/0023.png"
+              )
+
               val marker = new Marker(MarkerOptions(
                 position = pos,
                 map = gmap,
+                //icon = icon,
                 title = elm.name
               ))
 
