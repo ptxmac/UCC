@@ -29,7 +29,7 @@ Note: This will restart both frontend AND backend if any file in either parts ar
 
 ## Deployment
 
-Heroku? 
+The project have been configured to be easy to deploy on heroku.
 
 ## TODO
 

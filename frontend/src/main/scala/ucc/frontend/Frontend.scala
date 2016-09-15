@@ -154,6 +154,32 @@ class Frontend(base: String) {
     layer.render
   }
 
+  /**
+    * Initialize the Google Map API
+    */
+  def initializeMap() = js.Function {
+
+    import google.maps._
+
+    val opts = MapOptions(
+      center = new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
+      zoom = 14
+    )
+    gmap = new Map(document.getElementById("map"), opts)
+
+    event.addDomListener(gmap, "click", (e: MouseEvent) => {
+      println(s"clicky: ${e.latLng} zoom: ${gmap.getZoom()}")
+    })
+
+    val idx = ControlPosition.TOP_RIGHT.asInstanceOf[Int]
+    gmap.controls(idx).push(layerControl)
+    setTimeout(3000) {
+      callAPI()
+    }
+    ""
+  }
+
+
   @JSExport
   def main(): Unit = {
     println("Hello world!!")
@@ -162,28 +188,6 @@ class Frontend(base: String) {
     val head = document.getElementsByTagName("head")(0)
     head.appendChild(Style.render[TypedTag[HTMLStyleElement]].render)
 
-    def initializeMap() = js.Function {
-
-      import google.maps._
-
-
-      val opts = MapOptions(
-        center = new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
-        zoom = 14
-      )
-      gmap = new Map(document.getElementById("map"), opts)
-
-      event.addDomListener(gmap, "click", (e: MouseEvent) => {
-        println(s"clicky: ${e.latLng} zoom: ${gmap.getZoom()}")
-      })
-
-      val idx = ControlPosition.TOP_CENTER.asInstanceOf[Int]
-      gmap.controls(idx).push(layerControl)
-      setTimeout(3000) {
-        callAPI()
-      }
-      ""
-    }
 
     google.maps.event.addDomListener(window, "load", initializeMap)
 
