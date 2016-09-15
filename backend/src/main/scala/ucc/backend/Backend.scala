@@ -6,21 +6,12 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import spray.json._
+
+
 import ch.megard.akka.http.cors.CorsDirectives._
 import ucc.shared.API._
 
-/**
-  * Created by ptx on 9/11/16.
-  */
 
-
-trait DataSource {
-  val name: String
-
-  def elements: Seq[Element]
-}
 
 
 class TestDataSource extends DataSource {
@@ -34,7 +25,8 @@ class TestDataSource extends DataSource {
 object Backend {
 
   val sources: Map[String, DataSource] = Map(
-    "test" -> new TestDataSource
+    "test" -> new TestDataSource,
+    "trash" -> new TrashDataSource
   )
 
   def route: Route = cors() {

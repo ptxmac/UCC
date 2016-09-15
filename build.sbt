@@ -24,7 +24,9 @@ lazy val backend = (project in file("backend")).
         "com.typesafe.akka" %% "akka-actor" % akkaVersion,
         "com.typesafe.akka" %% "akka-http-experimental" % akkaVersion,
 
-        "com.typesafe.akka" %% "akka-http-spray-json-experimental" % akkaVersion,
+
+        // CSV
+        "com.github.tototoshi" %% "scala-csv" % "1.3.3",
 
         // CORS directives
         "ch.megard" %% "akka-http-cors" % "0.1.6"

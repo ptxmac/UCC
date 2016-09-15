@@ -34,3 +34,5 @@ Heroku?
 ## TODO
 
 - [ ] Use better style: <https://snazzymaps.com/>
+- [ ] Differentiate markers per layer 
+- [ ] Remove markers
