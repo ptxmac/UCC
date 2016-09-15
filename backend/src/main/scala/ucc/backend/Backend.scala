@@ -59,9 +59,9 @@ object Backend {
     implicit val system = ActorSystem("ucc-backend")
     implicit val materializer = ActorMaterializer()
 
-
+    val port = sys.env.getOrElse("PORT", "8085").toInt
     // Start server
-    Http().bindAndHandle(route, "localhost", 8085)
+    Http().bindAndHandle(route, "0.0.0.0", port)
 
   }
 
