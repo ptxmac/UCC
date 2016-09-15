@@ -6,56 +6,31 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
+import ucc.backend.api.ApiService
+import ucc.backend.data.{DataSource, UberDataSource, ToiletDataSource, TrashDataSource}
 
 
-import ch.megard.akka.http.cors.CorsDirectives._
-import ucc.shared.API._
-
-
-
-
-class TestDataSource extends DataSource {
-  override val name: String = "Test source"
-
-  override def elements: Seq[Element] = Seq(
-    Element("Uber", Location(56.156373, 10.207897))
-  )
-}
-
-object Backend {
+object Backend extends ApiService {
 
   val sources: Map[String, DataSource] = Map(
-    "test" -> new TestDataSource,
-    "trash" -> new TrashDataSource
+    "uber" -> new UberDataSource,
+    "trash" -> new TrashDataSource,
+    "toilet" -> new ToiletDataSource
   )
 
-  def route: Route = cors() {
-    path("datasets") {
-      get {
-        complete {
-
-          val reply = DatasetListReply(
-            sources.map { case (key, source) => DatasetInfo(source.name, key) }.toSeq
-          )
-          upickle.default.write(reply)
-        }
-      }
-    } ~ path("datasets" / Segment) { name =>
-      // Get dataset
-      complete {
-        // new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
-        val source = sources(name)
-        val reply = DatasetReply(source.elements)
-
-        upickle.default.write(reply)
-      }
-    } ~ path(PathEnd) {
+  /**
+    * Helper route for serving the static files. Not needed if the frontend is hosted another place.
+    */
+  def staticRoute: Route =
+    path(PathEnd) {
       getFromResource("index-prod.html")
     } ~ path(Segment) { name =>
       getFromResource(name)
     }
 
-  }
+  def route: Route = apiRoute ~ staticRoute
+
+
 
 
   def main(args: Array[String]): Unit = {

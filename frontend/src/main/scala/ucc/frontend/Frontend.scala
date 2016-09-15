@@ -10,6 +10,7 @@ import org.scalajs.dom.html.Div
 import org.scalajs.dom.raw.{HTMLInputElement, HTMLStyleElement}
 import ucc.shared.API.{DatasetListReply, DatasetReply}
 
+import scala.collection.mutable
 import scala.concurrent.Future
 import scalacss.ScalatagsCss._
 import scalacss.Defaults._
@@ -90,8 +91,11 @@ class Frontend(base: String) {
     }
   }
 
-  def toggleLayerHandler(event: Event): Unit = {
+  val layers = mutable.Map.empty[String, Seq[Marker]]
 
+  var lastInfoWindow: Option[InfoWindow] = None
+
+  def toggleLayerHandler(event: Event): Unit = {
 
     event.target match {
       case input: HTMLInputElement =>
@@ -101,7 +105,7 @@ class Frontend(base: String) {
         if (enabled) {
           // Get set
           for (reply <- api.getDataset(id)) {
-            for (elm <- reply.elements) {
+            val markers = for (elm <- reply.elements) yield {
 
               val content = div(elm.name).toString()
 
@@ -110,17 +114,30 @@ class Frontend(base: String) {
               ))
 
               val pos = new LatLng(elm.location.lat, elm.location.lon)
+
+              println(s"pos: $pos")
+
               val marker = new Marker(MarkerOptions(
                 position = pos,
                 map = gmap,
                 title = elm.name
               ))
 
-              google.maps.event.addListener(marker, "click", () =>
+              google.maps.event.addListener(marker, "click", () => {
+                lastInfoWindow.foreach(_.close())
                 infowindow.open(gmap, marker)
-              )
+                lastInfoWindow = Some(infowindow)
+              })
+
+              marker
             }
+            layers(id) = markers
           }
+        } else {
+          for (marker <- layers.getOrElse(id, Seq())) {
+            marker.setMap(null)
+          }
+          layers(id) = Seq()
         }
 
       // Tod stuff here

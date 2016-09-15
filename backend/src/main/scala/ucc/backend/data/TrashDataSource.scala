@@ -1,6 +1,6 @@
-package ucc.backend
+package ucc.backend.data
 
-import java.io.{File, InputStreamReader}
+import java.io.InputStreamReader
 
 import com.github.tototoshi.csv.CSVReader
 import ucc.shared.API.{Element, Location}

@@ -11,8 +11,10 @@ lazy val root = (project in file(".")).settings(
 
 
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
-  libraryDependencies += "com.lihaoyi" %%% "upickle" % "0.4.2"
-
+  libraryDependencies ++= Seq(
+    "com.lihaoyi" %%% "upickle" % "0.4.2"
+    //    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  )
 )
 
 lazy val sharedJS = shared.js
@@ -27,6 +29,14 @@ lazy val backend = (project in file("backend")).
       Seq(
         "com.typesafe.akka" %% "akka-actor" % akkaVersion,
         "com.typesafe.akka" %% "akka-http-experimental" % akkaVersion,
+
+        // upickle for akka http
+        "de.heikoseeberger" %% "akka-http-upickle" % "1.10.0",
+
+
+        // Testing
+        "com.typesafe.akka" %% "akka-http-testkit" % akkaVersion % "test",
+        "org.scalatest" %% "scalatest" % "3.0.0" % "test",
 
 
         // CSV

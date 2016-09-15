@@ -2,10 +2,8 @@
 
 ## Borrowed components
 
-The google maps API wrapper from <https://github.com/coreyauger/scalajs-google-maps> is copied 
-
-
-
+The google maps API wrapper from <https://github.com/coreyauger/scalajs-google-maps> is copied to the src dir because there isn't a production version on maven yet. 
+(See <https://github.com/coreyauger/scalajs-google-maps/issues/3>)
 
 ## Structure
 
@@ -16,6 +14,11 @@ The project is split into frontend and backend.
 ### Frontend
 
 ### Shared
+
+## Data
+
+All the data comes from Open Data Aarhus (<https://odaa.dk>)
+
 
 ## Development
 
@@ -31,8 +34,13 @@ Note: This will restart both frontend AND backend if any file in either parts ar
 
 The project have been configured to be easy to deploy on heroku.
 
+Note: to simplify deployment, the backend will serve both the API and the frontend. If scalability is needed, the frontend could be moved to a CDN.
+
 ## TODO
 
 - [ ] Use better style: <https://snazzymaps.com/>
 - [ ] Differentiate markers per layer 
-- [ ] Remove markers
+- [ ] Full optimized JS
+- [ ] Error handling!
+- [ ] Test json conversion
+- [ ] Test frontend?
