@@ -33,8 +33,8 @@ lazy val backend = (project in file("backend")).
 
       )
     }
-  ).
-  dependsOn(sharedJVM)
+  ).dependsOn(sharedJVM).
+  enablePlugins(JavaAppPackaging)
 
 lazy val frontend = (project in file("frontend")).
   settings(workbenchSettings: _*). // Add workbench to frontend for development
