@@ -49,6 +49,10 @@ object Style extends StyleSheet.Inline {
     paddingRight(5 px)
   )
 
+  val layerIcon = style(
+    height(20 px)
+  )
+
 }
 
 import scalatags.JsDom.all._
@@ -96,7 +100,7 @@ class BackendAPI(base: String) {
   def callAPI[T: upickle.default.Reader](method: String): Future[T] = {
     retry({
       println(s"call: $method")
-      Ajax.get(base + method).map(xhr => upickle.default.read[T](xhr.responseText))
+      Ajax.get(s"${base}api/v1/${method}").map(xhr => upickle.default.read[T](xhr.responseText))
     }, 1 second, 10)
   }
 
@@ -116,6 +120,10 @@ class Frontend(apiBase: String, cdnBase: String) {
   val layers = mutable.Map.empty[String, Seq[Marker]]
 
   val datasets = mutable.Map.empty[String, DatasetInfo]
+
+  def imageURL(dataset: DatasetInfo): String = {
+    s"${cdnBase}${dataset.icon}.png"
+  }
 
   def fetchDatasets(): Unit = {
     for (reply <- api.listDatasets) {
@@ -142,6 +150,8 @@ class Frontend(apiBase: String, cdnBase: String) {
                 value := set.id,
                 onchange := toggleLayerHandler _
               ),
+              img(Style.layerIcon,
+                src := imageURL(set)),
               set.name
             )
           )
@@ -168,6 +178,14 @@ class Frontend(apiBase: String, cdnBase: String) {
         if (enabled) {
           // Get set
           for (reply <- api.getDataset(id)) {
+
+            val icon = MarkerImage(
+              //scaledSize = new Size(32, 32),
+              size = new Size(20, 34),
+              //anchor = new Point(16, 16),
+              url = imageURL(dataset)
+            )
+
             val markers = for (elm <- reply.elements) yield {
 
               val content = div(elm.name).toString()
@@ -178,13 +196,6 @@ class Frontend(apiBase: String, cdnBase: String) {
 
               val pos = new LatLng(elm.location.lat, elm.location.lon)
 
-
-              val icon = MarkerImage(
-                //scaledSize = new Size(32, 32),
-                size = new Size(20, 34),
-                //anchor = new Point(16, 16),
-                url = cdnBase + dataset.icon + ".png"
-              )
 
               val marker = new Marker(MarkerOptions(
                 position = pos,

@@ -30,13 +30,13 @@ class ApiServiceTest extends FunSuite with ScalatestRouteTest with ApiService {
   })
 
   test("get dataset list") {
-    Get("/datasets") ~> apiRoute ~> check {
+    Get("/api/v1/datasets") ~> apiRoute ~> check {
       assert(responseAs[DatasetListReply] === DatasetListReply(Seq(DatasetInfo("Test source", "test", "noIcon"))))
     }
   }
 
   test("get dataset") {
-    Get("/datasets/test") ~> apiRoute ~> check {
+    Get("/api/v1/datasets/test") ~> apiRoute ~> check {
       assert(responseAs[DatasetReply] === DatasetReply(Seq(
         Element("test", Location(1, 2))
       )))
@@ -44,7 +44,7 @@ class ApiServiceTest extends FunSuite with ScalatestRouteTest with ApiService {
   }
 
   test("dataset not found") {
-    Get("/datasets/notfound") ~> Route.seal(apiRoute) ~> check {
+    Get("/api/v1/datasets/notfound") ~> Route.seal(apiRoute) ~> check {
 
       assert(status === StatusCodes.NotFound)
     }

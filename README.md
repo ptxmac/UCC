@@ -1,5 +1,10 @@
 # UCC
 
+Created by Peter Kristensen
+
+- [Linkedin](https://www.linkedin.com/in/pekri)
+- [GitHub](https://github.com/ptxmac/)
+
 ## Uber Coding Challenge
 
 [Open Data Aarhus](https://odaa.dk) (ODAA) is a project trying to release data about the aarhus area to the public. 
@@ -36,7 +41,12 @@ Both backend and frontend are written in [Scala](http://scala-lang.org), and sha
 The backend is build on [Akka HTTP](http://doc.akka.io/docs/akka/2.4.10/scala/http/introduction.html). 
 Akka is a Erlang-style actors system for Scala and Akka HTTP is a HTTP implementation on top of Akka.
   
-TODO why?
+The backend loads the datasets and starts serving API requests.
+
+There's currently only two API calls:
+
+- `/api/v1/datasets` Returns a list of known datasets and a tiny bit of meta data (name and icon)
+- `/api/v1/datasets/<id>` Returns all elements for a given dataset.
 
 ### Frontend
 
@@ -92,7 +102,7 @@ The project have been configured to be easy to deploy on heroku.
 
 Note: to simplify deployment, the backend will serve both the API and the frontend. If scalability is needed, the frontend could be moved to a CDN.
 
-The application is correcnt deployed at: XXXX
+The application is currently deployed at: https://tranquil-ridge-98607.herokuapp.com/
 
 ## Future features
 

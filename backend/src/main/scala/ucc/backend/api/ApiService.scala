@@ -23,25 +23,25 @@ trait ApiService {
     // Automatically encode case classes using upickle
     import de.heikoseeberger.akkahttpupickle.UpickleSupport._
 
+    pathPrefix("api" / "v1") {
+      path("datasets") {
+        get {
+          complete {
 
-    path("datasets") {
-      get {
-        complete {
-
-          DatasetListReply(
-            sources.map { case (key, source) => DatasetInfo(source.name, key, source.icon) }.toSeq
-          )
+            DatasetListReply(
+              sources.map { case (key, source) => DatasetInfo(source.name, key, source.icon) }.toSeq
+            )
+          }
         }
-      }
-    } ~ path("datasets" / Segment) { name =>
-      // Get dataset
-      rejectEmptyResponse {
-        complete {
-          // new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
-          sources.get(name).map(s => DatasetReply(s.elements))
+      } ~ path("datasets" / Segment) { name =>
+        // Get dataset
+        rejectEmptyResponse {
+          complete {
+            // new LatLng(56.156373, 10.207897), // Obviously the center of Aarhus
+            sources.get(name).map(s => DatasetReply(s.elements))
+          }
         }
       }
     }
   }
-
 }
