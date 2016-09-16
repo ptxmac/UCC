@@ -5,7 +5,7 @@ package ucc.shared
   */
 object API {
 
-  case class DatasetInfo(name: String, id: String)
+  case class DatasetInfo(name: String, id: String, icon: String)
 
   case class DatasetListReply(sets: Seq[DatasetInfo])
 

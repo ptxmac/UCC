@@ -23,8 +23,10 @@ class ToiletDataSource extends DataSource {
     val geojson = new GeoJSONLoader(stream, "ISO-8859-1")
 
     geojson.getFeatures.map { feature =>
-
       Element(feature.properties("Adresse"), GeoJSONLoader.extractToLocation(feature))
     }
   }
+
+  override val icon: String = "brown_MarkerT"
+
 }

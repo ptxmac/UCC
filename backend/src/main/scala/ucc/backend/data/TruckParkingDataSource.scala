@@ -22,4 +22,7 @@ class TruckParkingDataSource extends DataSource {
       Element(feature.properties("description"), GeoJSONLoader.extractToLocation(feature))
     }
   }
+
+  override val icon: String = "yellow_MarkerT"
+
 }

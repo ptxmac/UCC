@@ -21,5 +21,8 @@ class TrashDataSource extends DataSource {
 
     cans.map(map => Element(map("Adresse"), Location(map("northing").toDouble, map("easting").toDouble)))
   }
+
+  override val icon: String = "green_MarkerT"
+
 }
 

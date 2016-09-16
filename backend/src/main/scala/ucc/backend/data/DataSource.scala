@@ -13,6 +13,11 @@ trait DataSource {
   def name: String
 
   /**
+    * The name of the icon to show
+    */
+  def icon: String
+
+  /**
     * Returns a collection of Elements in the datasource
     */
   def elements: Seq[Element]

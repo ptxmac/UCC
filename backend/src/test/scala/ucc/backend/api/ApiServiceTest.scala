@@ -18,6 +18,7 @@ class ApiServiceTest extends FunSuite with ScalatestRouteTest with ApiService {
 
     override val name: String = "Test source"
 
+    override val icon = "noIcon"
 
     override val elements: Seq[Element] = {
 
@@ -30,7 +31,7 @@ class ApiServiceTest extends FunSuite with ScalatestRouteTest with ApiService {
 
   test("get dataset list") {
     Get("/datasets") ~> apiRoute ~> check {
-      assert(responseAs[DatasetListReply] === DatasetListReply(Seq(DatasetInfo("Test source", "test"))))
+      assert(responseAs[DatasetListReply] === DatasetListReply(Seq(DatasetInfo("Test source", "test", "noIcon"))))
     }
   }
 

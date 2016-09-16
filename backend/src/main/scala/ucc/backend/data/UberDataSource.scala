@@ -11,4 +11,6 @@ class UberDataSource extends DataSource {
   override def elements: Seq[Element] = Seq(
     Element("Uber aarhus", Location(56.156373, 10.207897))
   )
+
+  override val icon: String = "blue_MarkerU"
 }

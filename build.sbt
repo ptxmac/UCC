@@ -12,8 +12,8 @@ lazy val root = (project in file(".")).settings(
 
 lazy val shared = (crossProject.crossType(CrossType.Pure) in file("shared")).settings(
   libraryDependencies ++= Seq(
-    "com.lihaoyi" %%% "upickle" % "0.4.2"
-    //    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+    "com.lihaoyi" %%% "upickle" % "0.4.2",
+    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
   )
 )
 

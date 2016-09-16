@@ -29,7 +29,7 @@ trait ApiService {
         complete {
 
           DatasetListReply(
-            sources.map { case (key, source) => DatasetInfo(source.name, key) }.toSeq
+            sources.map { case (key, source) => DatasetInfo(source.name, key, source.icon) }.toSeq
           )
         }
       }

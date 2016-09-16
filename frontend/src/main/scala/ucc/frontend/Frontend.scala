@@ -8,7 +8,7 @@ import org.scalajs.dom._
 import org.scalajs.dom.ext.Ajax
 import org.scalajs.dom.html.Div
 import org.scalajs.dom.raw.{HTMLInputElement, HTMLStyleElement}
-import ucc.shared.API.{DatasetListReply, DatasetReply}
+import ucc.shared.API.{DatasetInfo, DatasetListReply, DatasetReply}
 
 import scala.collection.mutable
 import scala.concurrent.duration.FiniteDuration
@@ -115,6 +115,7 @@ class Frontend(apiBase: String, cdnBase: String) {
 
   val layers = mutable.Map.empty[String, Seq[Marker]]
 
+  val datasets = mutable.Map.empty[String, DatasetInfo]
 
   def fetchDatasets(): Unit = {
     for (reply <- api.listDatasets) {
@@ -124,9 +125,17 @@ class Frontend(apiBase: String, cdnBase: String) {
       }
       layers.clear()
 
+      // save datasets
+      datasets.clear()
+      for (set <- reply.sets) {
+        datasets(set.id) = set
+      }
+
+      // Update GUI
+
       layerList.innerHTML = ""
       val elm = div(
-        for (set <- reply.sets) yield {
+        (for ((k, set) <- datasets) yield {
           div(
             label(
               input(`type` := "checkbox",
@@ -136,7 +145,7 @@ class Frontend(apiBase: String, cdnBase: String) {
               set.name
             )
           )
-        }
+        }).toSeq
       )
       layerList.appendChild(elm.render)
 
@@ -153,6 +162,8 @@ class Frontend(apiBase: String, cdnBase: String) {
       case input: HTMLInputElement =>
         val id = input.value
         val enabled = input.checked
+
+        val dataset = datasets(id)
 
         if (enabled) {
           // Get set
@@ -172,7 +183,7 @@ class Frontend(apiBase: String, cdnBase: String) {
                 //scaledSize = new Size(32, 32),
                 size = new Size(20, 34),
                 //anchor = new Point(16, 16),
-                url = cdnBase + "blue_MarkerA.png"
+                url = cdnBase + dataset.icon + ".png"
               )
 
               val marker = new Marker(MarkerOptions(
