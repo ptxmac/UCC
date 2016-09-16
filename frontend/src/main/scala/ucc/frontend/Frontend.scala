@@ -172,7 +172,7 @@ class Frontend(apiBase: String, cdnBase: String) {
                 //scaledSize = new Size(32, 32),
                 size = new Size(20, 34),
                 //anchor = new Point(16, 16),
-                url = cdnBase + "markers/blue_MarkerA.png"
+                url = cdnBase + "blue_MarkerA.png"
               )
 
               val marker = new Marker(MarkerOptions(

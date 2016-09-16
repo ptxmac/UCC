@@ -6,11 +6,12 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
+import com.typesafe.scalalogging.LazyLogging
 import ucc.backend.api.ApiService
 import ucc.backend.data._
 
 
-object Backend extends ApiService {
+object Backend extends ApiService with LazyLogging {
 
   val sources: Map[String, DataSource] = Map(
     "uber" -> new UberDataSource,
@@ -27,9 +28,6 @@ object Backend extends ApiService {
       getFromResource("index-prod.html")
     } ~ path(Segment) { name =>
       getFromResource(name)
-    } ~ path("markers" / Segment) { name =>
-      getFromResource(s"markers/$name")
-
     }
 
   def route: Route = apiRoute ~ staticRoute
