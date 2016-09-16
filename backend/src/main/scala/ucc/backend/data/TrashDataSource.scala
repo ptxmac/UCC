@@ -12,7 +12,7 @@ class TrashDataSource extends DataSource {
 
   override val elements: Seq[Element] = {
 
-    val stream = getClass.getClassLoader.getResourceAsStream("Affaldsspande2016.csv")
+    val stream = getClass.getResourceAsStream("Affaldsspande2016.csv")
 
 
     val reader = CSVReader.open(new InputStreamReader(stream))

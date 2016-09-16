@@ -107,14 +107,22 @@ class BackendAPI(base: String) {
 }
 
 @JSExport
-class Frontend(base: String) {
+class Frontend(apiBase: String, cdnBase: String) {
 
-  val api = new BackendAPI(base)
+  val api = new BackendAPI(apiBase)
 
   var gmap: google.maps.Map = null // TODO option instead
 
+  val layers = mutable.Map.empty[String, Seq[Marker]]
+
+
   def fetchDatasets(): Unit = {
     for (reply <- api.listDatasets) {
+      // clear all existing layers
+      layers.foreach { case (_, markers) =>
+        markers.foreach(_.setMap(null))
+      }
+      layers.clear()
 
       layerList.innerHTML = ""
       val elm = div(
@@ -136,7 +144,6 @@ class Frontend(base: String) {
   }
 
 
-  val layers = mutable.Map.empty[String, Seq[Marker]]
 
   var lastInfoWindow: Option[InfoWindow] = None
 
@@ -162,16 +169,16 @@ class Frontend(base: String) {
 
 
               val icon = MarkerImage(
-                scaledSize = new Size(32, 32),
-                size = new Size(64, 64),
-                anchor = new Point(16, 16),
-                url = "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.6/assets/png/0023.png"
+                //scaledSize = new Size(32, 32),
+                size = new Size(20, 34),
+                //anchor = new Point(16, 16),
+                url = cdnBase + "markers/blue_MarkerA.png"
               )
 
               val marker = new Marker(MarkerOptions(
                 position = pos,
                 map = gmap,
-                //icon = icon,
+                icon = icon,
                 title = elm.name
               ))
 
@@ -221,7 +228,7 @@ class Frontend(base: String) {
   }
 
   /**
-    * Initialize the Google Map API
+    * Initialize the Google Map API￼Uber
     */
   def initializeMap() = js.Function {
 

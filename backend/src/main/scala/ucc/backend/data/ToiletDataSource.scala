@@ -1,5 +1,6 @@
 package ucc.backend.data
 
+import ucc.backend.utils.GeoJSONLoader
 import ucc.shared.API.{Element, Location}
 
 import scala.io.Source
@@ -18,16 +19,12 @@ class ToiletDataSource extends DataSource {
     */
   override val elements: Seq[Element] = {
 
-    val stream = getClass.getClassLoader.getResourceAsStream("BytoiletterWGS84.json")
-    val text = Source.fromInputStream(stream, "ISO-8859-1").mkString
-    val json = upickle.json.read(text)
+    val stream = getClass.getResourceAsStream("BytoiletterWGS84.json")
+    val geojson = new GeoJSONLoader(stream, "ISO-8859-1")
 
-    val features = json("features").arr
+    geojson.getFeatures.map { feature =>
 
-    features.map { feature =>
-      val coord = feature("geometry")("coordinates")
-      val name = feature("properties")("Adresse").str
-      Element(name, Location(coord(1).num, coord(0).num))
+      Element(feature.properties("Adresse"), GeoJSONLoader.extractToLocation(feature))
     }
   }
 }

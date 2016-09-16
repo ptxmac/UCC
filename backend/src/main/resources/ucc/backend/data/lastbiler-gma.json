@@ -1,0 +1,371 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::3299"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Jægergårdsgade, øst for Spanien<\/td><\/tr>\n      <tr><td>antal<\/td><td>20<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler og busser, 24 timer<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.21093,
+          56.148473,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Dollerupvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>4<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun Lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.188479,
+          56.155676,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Sindalsvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>6<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.219394,
+          56.209565,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Viengevej, vest for Grenåvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>2<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.248573,
+          56.208662,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Skejbyvej, overfor Skejbygårdsvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>2<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.202064,
+          56.198793,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Graham Bells Vej,  ml 19-21<\/td><\/tr>\n      <tr><td>antal<\/td><td>50<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>P-zone<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.177845,
+          56.206511,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Sintrupvej ml. nr 11 - 50<\/td><\/tr>\n      <tr><td>antal<\/td><td>22<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Køretøjer over 3500 kg i afmærkede båse<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.109721,
+          56.16742,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Huginsvej og Lokesvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>14<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler busser og anhængere over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.172815,
+          56.150126,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Viby Stadion v\/ Skanderborgvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>5<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.155759,
+          56.125198,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Lægårdsvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>4<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.23852,
+          56.225597,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Skovgårdsvænget<\/td><\/tr>\n      <tr><td>antal<\/td><td>3<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.119354,
+          56.094086,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Orholt Alle 10 samt overfor<\/td><\/tr>\n      <tr><td>antal<\/td><td>7<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.118481,
+          56.086048,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Skavholmvej<\/td><\/tr>\n      <tr><td>antal<\/td><td>4<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Kun lastbiler og busser over 3500 kg<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.241106,
+          56.227362,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Jernaldervej 150 - 232<\/td><\/tr>\n      <tr><td>antal<\/td><td>2<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>P: varevogne<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.140421,
+          56.172853,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "MapInfo gemte objekter",
+        "description": "<br><br><br>\n    <table border=\"1\" padding=\"0\">\n      <tr><td>adresse<\/td><td>Tilst Søndervej 72-76<\/td><\/tr>\n      <tr><td>antal<\/td><td>3 - 4<\/td><\/tr>\n      <tr><td>Bemærkninger<\/td><td>Lastbiler<\/td><\/tr>\n        ",
+        "timestamp": null,
+        "begin": null,
+        "end": null,
+        "altitudeMode": "relativeToGround",
+        "tessellate": -1,
+        "extrude": 1,
+        "visibility": 1,
+        "drawOrder": null,
+        "icon": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.119637,
+          56.182816,
+          0.0
+        ]
+      }
+    }
+  ]
+}

@@ -5,6 +5,10 @@
 The google maps API wrapper from <https://github.com/coreyauger/scalajs-google-maps> is copied to the src dir because there isn't a production version on maven yet. 
 (See <https://github.com/coreyauger/scalajs-google-maps/issues/3>)
 
+Map markers
+
+http://www.benjaminkeen.com/google-maps-coloured-markers/
+
 ## Structure
 
 The project is split into frontend and backend.

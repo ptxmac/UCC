@@ -43,7 +43,12 @@ lazy val backend = (project in file("backend")).
         "com.github.tototoshi" %% "scala-csv" % "1.3.3",
 
         // CORS directives
-        "ch.megard" %% "akka-http-cors" % "0.1.6"
+        "ch.megard" %% "akka-http-cors" % "0.1.6",
+
+        // Logging
+        "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
+
+        "ch.qos.logback" % "logback-classic" % "1.1.7"
 
       )
     }
