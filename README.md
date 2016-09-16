@@ -44,3 +44,4 @@ Note: to simplify deployment, the backend will serve both the API and the fronte
 - [ ] Error handling!
 - [ ] Test json conversion
 - [ ] Test frontend?
+- [ ] Create postman dump

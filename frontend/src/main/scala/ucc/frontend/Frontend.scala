@@ -11,7 +11,8 @@ import org.scalajs.dom.raw.{HTMLInputElement, HTMLStyleElement}
 import ucc.shared.API.{DatasetListReply, DatasetReply}
 
 import scala.collection.mutable
-import scala.concurrent.Future
+import scala.concurrent.duration.FiniteDuration
+import scala.concurrent.{ExecutionContext, Future, Promise}
 import scalacss.ScalatagsCss._
 import scalacss.Defaults._
 import scala.scalajs.js
@@ -19,7 +20,8 @@ import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scalatags.JsDom.TypedTag
 import scala.scalajs.js.timers.setTimeout
 import scala.language.postfixOps
-
+import scala.concurrent.duration._
+import scala.util.{Failure, Success}
 
 /**
   * Created by ptx on 9/14/16.
@@ -52,13 +54,55 @@ object Style extends StyleSheet.Inline {
 import scalatags.JsDom.all._
 
 class BackendAPI(base: String) {
-  def callAPI(method: String): Future[String] = {
-    Ajax.get(base + method).map(_.responseText)
+
+  /**
+    * Delay a future
+    */
+  def delay[T](f: => Future[T], delay: FiniteDuration): Future[T] = {
+    val p = Promise[T]()
+    setTimeout(delay) {
+
+      f.onComplete {
+        case Success(res) => p.success(res)
+        case Failure(ex) => p.failure(ex)
+      }
+    }
+    p.future
   }
 
-  def listDatasets: Future[DatasetListReply] = callAPI("datasets").map(upickle.default.read[DatasetListReply])
+  /**
+    * Retry a future a number of times if it fails
+    *
+    * @param f          a expresion returning a Future[T]. Note: call-by-name
+    * @param retryDelay wait time between retires
+    * @param retries    number of times the future should be retired before giving up
+    * @return a new future with will have the result of the original future
+    */
+  def retry[T](f: => Future[T], retryDelay: FiniteDuration, retries: Int): Future[T] = {
+    f recoverWith { case _ if retries > 0 =>
+      delay({
+        retry(f, retryDelay, retries - 1)
+      }, retryDelay)
+    }
+  }
 
-  def getDataset(id: String): Future[DatasetReply] = callAPI("datasets/" + id).map(upickle.default.read[DatasetReply])
+  /**
+    * Make GET request to the api. if the call fails retry it up to 10 times with a 1 second delay between
+    *
+    * @tparam T The return type of the API call
+    * @param method name of the API to call
+    * @return A future wrapping the exepcted result
+    */
+  def callAPI[T: upickle.default.Reader](method: String): Future[T] = {
+    retry({
+      println(s"call: $method")
+      Ajax.get(base + method).map(xhr => upickle.default.read[T](xhr.responseText))
+    }, 1 second, 10)
+  }
+
+  def listDatasets = callAPI[DatasetListReply]("datasets")
+
+  def getDataset(id: String) = callAPI[DatasetReply]("datasets/" + id)
 
 }
 
@@ -91,6 +135,7 @@ class Frontend(base: String) {
     }
   }
 
+
   val layers = mutable.Map.empty[String, Seq[Marker]]
 
   var lastInfoWindow: Option[InfoWindow] = None
@@ -115,7 +160,6 @@ class Frontend(base: String) {
 
               val pos = new LatLng(elm.location.lat, elm.location.lon)
 
-              println(s"pos: $pos")
 
               val icon = MarkerImage(
                 scaledSize = new Size(32, 32),
@@ -156,10 +200,7 @@ class Frontend(base: String) {
   }
 
 
-  def callAPI() = {
 
-    fetchDatasets()
-  }
 
   val layerList = div().render
 
@@ -198,9 +239,9 @@ class Frontend(base: String) {
 
     val idx = ControlPosition.TOP_RIGHT.asInstanceOf[Int]
     gmap.controls(idx).push(layerControl)
-    setTimeout(3000) {
-      callAPI()
-    }
+
+    fetchDatasets()
+
     ""
   }
 
