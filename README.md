@@ -13,7 +13,7 @@ ODAA is only focused on the data and not the use or visualization of it.
 A subset of the data are location related and can be visualized on a map. 
 
 This project is a attempt to do exactly that and bring the data closer to the public 
-(This project is currently just a proff of concept, but shows the general idea)
+(This project is currently just a proof of concept, but shows the general idea)
 
 
 ## Borrowed components
